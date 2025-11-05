@@ -48,6 +48,15 @@ public class SzamFeldolgozo
         }
     }
 
+    public int Faktorialis(int n)
+    {
+        if (n < 0)
+            throw new ArgumentException("A faktoriális nem definiált negatív számokra.");
+        if (n == 0 || n == 1)
+            return 1;
+        return n * Faktorialis(n - 1);
+    }
+
     public List<int> Lista()
     {
         return new List<int>(szamok);
@@ -58,12 +67,12 @@ class Program
 {
     static void Main()
     {
-        var feldolgozo = new SzamFeldolgozo(new List<int> { 5, 3, 1, 4, 2 });
+        var feldolgozo = new SzamFeldolgozo(new List<int> { 5, 2, 4, 1, 3 });
         Console.WriteLine($"Összeg: {feldolgozo.Osszeg()}");
         Console.WriteLine($"Átlag: {feldolgozo.Atlag()}");
         Console.WriteLine($"Tartalmazza a 4-est? {feldolgozo.Tartalmazza(4)}");
-        Console.WriteLine("Eredeti lista: " + string.Join(", ", feldolgozo.Lista()));
         feldolgozo.BuborekRendezes();
         Console.WriteLine("Rendezett lista: " + string.Join(", ", feldolgozo.Lista()));
+        Console.WriteLine($"5 faktoriálisa: {feldolgozo.Faktorialis(5)}");
     }
 }
