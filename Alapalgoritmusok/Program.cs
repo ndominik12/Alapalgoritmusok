@@ -31,6 +31,23 @@ public class SzamFeldolgozo
         return false;
     }
 
+    public void BuborekRendezes()
+    {
+        int n = szamok.Count;
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n - i - 1; j++)
+            {
+                if (szamok[j] > szamok[j + 1])
+                {
+                    int ideiglenes = szamok[j];
+                    szamok[j] = szamok[j + 1];
+                    szamok[j + 1] = ideiglenes;
+                }
+            }
+        }
+    }
+
     public List<int> Lista()
     {
         return new List<int>(szamok);
@@ -41,10 +58,12 @@ class Program
 {
     static void Main()
     {
-        var feldolgozo = new SzamFeldolgozo(new List<int> { 1, 2, 3, 4, 5 });
+        var feldolgozo = new SzamFeldolgozo(new List<int> { 5, 3, 1, 4, 2 });
         Console.WriteLine($"Összeg: {feldolgozo.Osszeg()}");
         Console.WriteLine($"Átlag: {feldolgozo.Atlag()}");
-        Console.WriteLine($"Tartalmazza a 3-ast? {feldolgozo.Tartalmazza(3)}");
-        Console.WriteLine($"Tartalmazza a 9-est? {feldolgozo.Tartalmazza(9)}");
+        Console.WriteLine($"Tartalmazza a 4-est? {feldolgozo.Tartalmazza(4)}");
+        Console.WriteLine("Eredeti lista: " + string.Join(", ", feldolgozo.Lista()));
+        feldolgozo.BuborekRendezes();
+        Console.WriteLine("Rendezett lista: " + string.Join(", ", feldolgozo.Lista()));
     }
 }
