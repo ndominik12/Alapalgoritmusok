@@ -1,15 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Alapalgoritmusok
+public class SzamFeldolgozo
 {
-    internal class Program
+    private List<int> szamok;
+
+    public SzamFeldolgozo(List<int> szamok)
     {
-        static void Main(string[] args)
-        {
-        }
+        this.szamok = new List<int>(szamok);
+    }
+
+    public List<int> Lista()
+    {
+        return new List<int>(szamok);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        var feldolgozo = new SzamFeldolgozo(new List<int> { 1, 2, 3, 4, 5 });
+        Console.WriteLine("A SzamFeldolgozo példány sikeresen létrejött.");
+        Console.WriteLine("A lista tartalma: " + string.Join(", ", feldolgozo.Lista()));
     }
 }
